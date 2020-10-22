@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<Users telegram_id="111"
+           is_admin="false"
+    />
+    <Users telegram_id="222"
+           is_admin="false"
+    />
+</dataset>
