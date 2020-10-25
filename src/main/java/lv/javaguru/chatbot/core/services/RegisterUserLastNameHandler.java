@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegisterUserLastNameHandler implements DomainCommandHandler<RegisterUserLastNameCommand, DomainCommandResult> {
 
-    @Autowired private UserRepository userRepository;
+    @Autowired
+    protected UserRepository userRepository;
 
     @Override
     public DomainCommandResult execute(RegisterUserLastNameCommand command) {
@@ -22,6 +23,11 @@ public class RegisterUserLastNameHandler implements DomainCommandHandler<Registe
         return userRepository.findByTelegramId(command.getTelegramId())
                 .map(user -> updateUserLastNameAndBuildResult(user, command))
                 .orElseGet(() -> buildUserNotFoundResult(command.getTelegramId()));
+    }
+
+    @Override
+    public Class<RegisterUserLastNameCommand> getCommandType() {
+        return RegisterUserLastNameCommand.class;
     }
 
     private DomainCommandResult updateUserLastNameAndBuildResult(User user, RegisterUserLastNameCommand command) {
@@ -37,11 +43,5 @@ public class RegisterUserLastNameHandler implements DomainCommandHandler<Registe
     private DomainCommandResult buildTelegramIdNotProvidedResult() {
         CoreError error = new CoreError("telegramId", "Must be not empty!");
         return new DomainCommandResult(error);
-    }
-
-
-    @Override
-    public Class getCommandType() {
-        return RegisterUserLastNameCommand.class;
     }
 }

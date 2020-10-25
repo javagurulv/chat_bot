@@ -2,7 +2,6 @@ package lv.javaguru.chatbot.core.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import lv.javaguru.chatbot.core.DomainCommandHandler;
 import lv.javaguru.chatbot.core.DomainCommandResult;
 import lv.javaguru.chatbot.core.commands.RegisterUserCommand;
@@ -13,7 +12,7 @@ import lv.javaguru.chatbot.core.persistence.UserRepository;
 @Component
 public class RegisterUserHandler implements DomainCommandHandler<RegisterUserCommand, DomainCommandResult> {
 
-	@Autowired private UserRepository userRepository;
+	@Autowired protected UserRepository userRepository;
 
 	@Override
 	public DomainCommandResult execute(RegisterUserCommand command) {
@@ -40,7 +39,7 @@ public class RegisterUserHandler implements DomainCommandHandler<RegisterUserCom
 	}
 
 	@Override
-	public Class getCommandType() {
+	public Class<RegisterUserCommand> getCommandType() {
 		return RegisterUserCommand.class;
 	}
 
