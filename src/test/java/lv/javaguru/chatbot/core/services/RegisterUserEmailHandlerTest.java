@@ -13,7 +13,6 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.util.ReflectionTestUtils;
-
 import static org.junit.Assert.*;
 
 @SpringBootTest
@@ -24,8 +23,7 @@ import static org.junit.Assert.*;
 })
 public class RegisterUserEmailHandlerTest {
     private final User user = new User();
-    @Autowired
-    protected UserRepository userRepository;
+    @Autowired UserRepository userRepository;
 
     @Test
     public void shouldReturnErrorWhenTelegramIdNullOrEmpty_1() {
