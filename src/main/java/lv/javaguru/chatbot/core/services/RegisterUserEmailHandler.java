@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class RegisterUserEmailHandler implements DomainCommandHandler<RegisterUserEmailCommand, DomainCommandResult> {
 
     @Autowired
-    public UserRepository userRepository;
+    protected UserRepository userRepository;
 
     @Override
     public DomainCommandResult execute(RegisterUserEmailCommand command) {

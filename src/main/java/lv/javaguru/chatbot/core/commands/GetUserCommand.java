@@ -4,7 +4,7 @@ import lv.javaguru.chatbot.core.DomainCommand;
 
 public class GetUserCommand implements DomainCommand<GetUserResult> {
 
-	private String telegramId;
+	private final String telegramId;
 
 	public GetUserCommand(String telegramId) {
 		this.telegramId = telegramId;

@@ -5,7 +5,7 @@ import lv.javaguru.chatbot.core.DomainCommandResult;
 
 public class RegisterUserCommand implements DomainCommand<DomainCommandResult> {
 
-	private String telegramId;
+	private final String telegramId;
 
 	public RegisterUserCommand(String telegramId) {
 		this.telegramId = telegramId;

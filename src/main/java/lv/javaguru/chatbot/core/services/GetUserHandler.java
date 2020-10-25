@@ -12,26 +12,24 @@ import lv.javaguru.chatbot.core.persistence.UserRepository;
 @Component
 public class GetUserHandler implements DomainCommandHandler<GetUserCommand, GetUserResult> {
 
-	@Autowired private UserRepository userRepository;
+    @Autowired
+    protected UserRepository userRepository;
 
-	@Override
-	public GetUserResult execute(GetUserCommand command) {
-		if (command.getTelegramId() == null || command.getTelegramId().isEmpty()) {
-			CoreError error = new CoreError("telegramId", "Must be not empty!");
-			return new GetUserResult(error);
-		}
+    @Override
+    public GetUserResult execute(GetUserCommand command) {
+        if (command.getTelegramId() == null || command.getTelegramId().isEmpty()) {
+            CoreError error = new CoreError("telegramId", "Must be not empty!");
+            return new GetUserResult(error);
+        }
 
-		return userRepository.findByTelegramId(command.getTelegramId())
-				.map(GetUserResult::new)
-				.orElseGet(() -> new GetUserResult(
-							new CoreError("telegramId", "User not found!")
-					)
-				);
-	}
+        return userRepository.findByTelegramId(command.getTelegramId())
+                .map(GetUserResult::new)
+                .orElseGet(() -> new GetUserResult(
+                        new CoreError("telegramId", "User not found!")));
+    }
 
-	@Override
-	public Class getCommandType() {
-		return GetUserCommand.class;
-	}
-
+    @Override
+    public Class<GetUserCommand> getCommandType() {
+        return GetUserCommand.class;
+    }
 }

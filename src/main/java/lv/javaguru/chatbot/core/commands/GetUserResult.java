@@ -6,18 +6,18 @@ import lv.javaguru.chatbot.core.domain.User;
 
 public class GetUserResult extends DomainCommandResult {
 
-	private User user;
+    private User user;
 
-	public GetUserResult(User user) {
-		this.user = user;
-	}
+    public GetUserResult(User user) {
+        this.user = user;
+    }
 
-	public GetUserResult(CoreError error) {
-		super(error);
-	}
+    public GetUserResult(CoreError error) {
+        super(error);
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
 }
