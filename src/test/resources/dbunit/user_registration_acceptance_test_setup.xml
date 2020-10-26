@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Users id="1"
+           telegram_id="20"
+           is_admin="false"
+           version="1"
+    />
+</dataset>

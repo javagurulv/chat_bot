@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Users id="1"
+           telegram_id="20"
+           is_admin="false"
+           version="1"
+    />
+	<Users id="2"
+           telegram_id="25"
+           first_name="John"
+           last_name="Robertson"
+           phone="22222222"
+           email="bob@bob.com"
+           is_admin="false"
+           version="4"
+    />
+</dataset>
