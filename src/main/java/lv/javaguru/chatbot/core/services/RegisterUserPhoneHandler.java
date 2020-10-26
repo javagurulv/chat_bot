@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class RegisterUserPhoneHandler implements DomainCommandHandler<RegisterUserPhoneCommand, DomainCommandResult> {
 
     @Autowired
-    private UserRepository userRepository;
+    protected UserRepository userRepository;
 
 
     @Override
@@ -21,14 +21,27 @@ public class RegisterUserPhoneHandler implements DomainCommandHandler<RegisterUs
         if (command.getTelegramId() == null || command.getTelegramId().isEmpty()) {
             return buildTelegramIdNotProvidedResult();
         }
+        if (!(validatePhoneFormat(command.getPhone()))) {
+            return buildNotValidatePhoneFormat();
+        }
         return userRepository.findByTelegramId(command.getTelegramId())
                 .map(user -> updateUserPhoneAndBuildResult(user, command))
                 .orElseGet(() -> buildUserNotFoundResult(command.getTelegramId()));
     }
 
     @Override
-    public Class getCommandType() {
+    public Class<RegisterUserPhoneCommand> getCommandType() {
         return RegisterUserPhoneCommand.class;
+    }
+
+    private boolean validatePhoneFormat(String entry) {
+        String regex = "^[0-9]+";
+        return entry.matches(regex);
+    }
+
+    private DomainCommandResult buildNotValidatePhoneFormat() {
+        CoreError error = new CoreError("phone number", "No supported phone number format");
+        return new DomainCommandResult(error);
     }
 
     private DomainCommandResult updateUserPhoneAndBuildResult(User user, RegisterUserPhoneCommand command) {
