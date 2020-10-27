@@ -1,13 +1,6 @@
 package lv.javaguru.chatbot.core.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.Version;
-
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -21,7 +14,8 @@ public abstract class BaseEntity {
 	@Version
 	private Long version;
 
-	@Column(name = "creation_date")
+	@OneToOne (optional=false, cascade=CascadeType.ALL)
+	@JoinColumn(name="creation_date")
 	private Date creationDate;
 
 	public Long getId() {

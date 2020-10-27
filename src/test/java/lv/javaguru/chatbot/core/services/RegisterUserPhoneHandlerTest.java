@@ -65,5 +65,4 @@ public class RegisterUserPhoneHandlerTest {
         DomainCommandResult result = handler.execute(command);
         assertTrue(result.hasErrors());
     }
-
 }
